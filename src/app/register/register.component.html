@@ -1,0 +1,51 @@
+<div>
+  <h2>Employee Portal</h2>
+</div>
+<button class="btn" (click)="getEmployeeList()"><h3>Click here to display full Employee list</h3></button>
+<form ngNativeValidate #myForm="ngForm" class="formContainer">
+  <label>
+    First Name: <input type="text" placeholder="Enter your First Name" name="firstName" [(ngModel)]="fName" required>
+  </label>
+  <label>
+    Last Name: <input type="text" placeholder="Enter your Last Name" name="lastName" [(ngModel)]="lName" required>
+  </label>
+  <label>
+    Gender: <input type="radio" name="gender" value="male" [(ngModel)]="gen">Male
+            <input type="radio" name="gender" value="female" [(ngModel)]="gen">Female
+            <input type="radio" name="gender" value="other" [(ngModel)]="gen">Other
+  </label>
+  <label>
+    Date of Birth: <input type="date" name="doB" [(ngModel)]="dob" required>
+  </label>
+  <label>
+    Department: <select name="department" [(ngModel)]="dept" required>
+                  <option *ngFor="let dept of department">{{dept.name}}</option>  
+                </select>
+  </label>
+  <button class="submit" type="button" (click)="submit(myForm)">Submit</button>
+  <button class="reset" type="reset">Reset</button>
+  
+</form>
+
+<div class="container">
+<table *ngIf="isDisplay">
+  <thead>
+  <tr>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Gender</th>
+    <th>DOB</th>
+    <th>Department</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employeeList">
+      <td>{{employee.firstName}}</td>
+      <td>{{employee.lastName}}</td>
+      <td>{{employee.gender}}</td>
+      <td>{{employee.dob}}</td>
+      <td>{{employee.department}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
